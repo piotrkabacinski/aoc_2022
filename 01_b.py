@@ -1,5 +1,6 @@
 # https://adventofcode.com/2022/day/1
 
+from functools import reduce
 from get_input import get_input
 
 calories = get_input("https://adventofcode.com/2022/day/1/input")
@@ -21,9 +22,4 @@ for calory in calories:
     else:
         current_sum = current_sum + int(calory)
 
-sum = 0
-
-for i in range(3):
-    sum = sum + top_3_sums[i]
-
-print(sum)  # 203002
+print(reduce(lambda a, b: a + b, top_3_sums))  # 203002
