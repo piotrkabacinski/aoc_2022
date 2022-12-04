@@ -55,10 +55,10 @@ sum = 0
 secret_strategy_sum = 0
 
 for game in games:
-    options = game.split(" ")
-
-    if (options[0] == ""):
+    if game == "":
         break
+
+    options = game.split(" ")
 
     player_1_option_index = Option[options[0]].value
     player_2_option_index = ResponseOption[options[1]].value

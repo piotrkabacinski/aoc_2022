@@ -1,4 +1,4 @@
-# # https://adventofcode.com/2022/day/3
+# https://adventofcode.com/2022/day/3
 
 from get_input import get_input
 
@@ -17,6 +17,9 @@ checked_characters = []
 sum = 0
 
 for pair in pairs:
+    if pair == "":
+        break
+    
     items_count = int(len(pair) / 2)
 
     first = pair[0:items_count]
