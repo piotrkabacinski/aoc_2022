@@ -24,23 +24,35 @@ class Score(Enum):
     LOOSE = 0
 
 
-response_option_results = (
-    (Score.DRAW.value, Score.WIN.value, Score.LOOSE.value),  # Rock
-    (Score.LOOSE.value, Score.DRAW.value, Score.WIN.value),  # Paper
-    (Score.WIN.value, Score.LOOSE.value, Score.DRAW.value) # Scissors
-)
-
+# Rock, Paper, Scissors
 option_scores = (1, 2, 3)
 
+response_option_results = (
+    # Rock, Paper, Scissors vs...
+    (Score.DRAW.value, Score.WIN.value, Score.LOOSE.value),  # Rock
+    (Score.LOOSE.value, Score.DRAW.value, Score.WIN.value),  # Paper
+    (Score.WIN.value, Score.LOOSE.value, Score.DRAW.value)  # Scissors
+)
 
-def calculate_response_result(option_value, response_value):
-    player_1_option_index = Option[option_value].value
-    player_2_option_index = ResponseOption[response_value].value
 
+strategy_response_option = [
+    # Loose, Draw, Win
+    (option_scores[2], option_scores[0], option_scores[1]),  # Rock
+    (option_scores[0], option_scores[1], option_scores[2]),  # Paper
+    (option_scores[1], option_scores[2], option_scores[0])  # Scissors
+]
+
+
+def calculate_response_result(player_1_option_index, player_2_option_index):
     return response_option_results[player_1_option_index][player_2_option_index] + option_scores[player_2_option_index]
 
 
+def calculate_strategy_response_result(player_1_option_index, player_2_option_index):
+    return strategy_response_option[player_1_option_index][player_2_option_index] + [Score.LOOSE.value, Score.DRAW.value, Score.WIN.value][player_2_option_index]
+
+
 sum = 0
+secret_strategy_sum = 0
 
 for game in games:
     options = game.split(" ")
@@ -48,6 +60,15 @@ for game in games:
     if (options[0] == ""):
         break
 
-    sum = sum + calculate_response_result(options[0], options[1])
+    player_1_option_index = Option[options[0]].value
+    player_2_option_index = ResponseOption[options[1]].value
 
-print(sum)
+    sum = sum + \
+        calculate_response_result(player_1_option_index, player_2_option_index)
+
+    secret_strategy_sum = secret_strategy_sum + \
+        calculate_strategy_response_result(
+            player_1_option_index, player_2_option_index)
+
+print("Sum:", sum)
+print("Secret strategy sum:", secret_strategy_sum)
