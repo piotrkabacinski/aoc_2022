@@ -70,5 +70,5 @@ for game in games:
         calculate_strategy_response_result(
             player_1_option_index, player_2_option_index)
 
-print("Sum:", sum)
-print("Secret strategy sum:", secret_strategy_sum)
+print("Sum:", sum) # 11386
+print("Secret strategy sum:", secret_strategy_sum) # 13600

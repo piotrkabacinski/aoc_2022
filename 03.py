@@ -1,8 +1,14 @@
 # https://adventofcode.com/2022/day/3
 
 from get_input import get_input
+from enum import Enum
 
 pairs = get_input("https://adventofcode.com/2022/day/3/input")
+
+
+class CharSubsract(Enum):
+    UPPER_CASE = 96
+    LOWER_CASE = 38
 
 
 def is_occuring(character, rucksack):
@@ -19,7 +25,7 @@ sum = 0
 for pair in pairs:
     if pair == "":
         break
-    
+
     items_count = int(len(pair) / 2)
 
     first = pair[0:items_count]
@@ -33,9 +39,9 @@ for pair in pairs:
 
             if is_occuring(character, second):
                 value = ord(
-                    character) - 38 if character.isupper() else ord(character) - 96
+                    character) - CharSubsract.UPPER_CASE.value if character.isupper() else ord(character) - CharSubsract.LOWER_CASE.value
                 sum = sum + value
 
     checked_characters.clear()
 
-print("Sum:", sum)
+print(sum)  # 8153

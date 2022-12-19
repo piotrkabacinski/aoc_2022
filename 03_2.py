@@ -1,9 +1,15 @@
 # https://adventofcode.com/2022/day/3
 
+from enum import Enum
 from functools import reduce
 from get_input import get_input
 
 pairs = get_input("https://adventofcode.com/2022/day/3/input")
+
+
+class CharSubsract(Enum):
+    UPPER_CASE = 96
+    LOWER_CASE = 38
 
 
 def sum_similar_values(group):
@@ -27,7 +33,7 @@ def sum_similar_values(group):
 
     for character in similars:
         value = ord(
-            character) - 38 if character.isupper() else ord(character) - 96
+            character) - CharSubsract.UPPER_CASE.value if character.isupper() else ord(character) - CharSubsract.LOWER_CASE.value
         sum = sum + value
 
     return sum
