@@ -14,7 +14,7 @@ def sum_similar_values(group):
 
     for index in range(1, 3):
         for character in group[index]:
-            if character in dict:
+            if character in dict and dict[character][index - 1] != 1:
                 dict[character][index - 1] = 1
 
     similars = []
