@@ -51,6 +51,7 @@ for index, line in enumerate(input):
             target_index = int(tokens[5]) - 1
 
             crates = parsed_stack[source_index][0:amount]
+            # Comment out for part 2 solution:
             crates.reverse()
 
             parsed_stack[target_index] = crates + parsed_stack[target_index]
@@ -59,4 +60,4 @@ for index, line in enumerate(input):
 
         break
 
-print("".join(list(map(lambda a: a[0], parsed_stack)))) # TLFGBZHCN
+print("".join(list(map(lambda a: a[0], parsed_stack))))  # TLFGBZHCN, QRQFHFWCL
