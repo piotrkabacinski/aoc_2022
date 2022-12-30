@@ -5,8 +5,6 @@ from get_input import get_input
 
 calories = get_input("https://adventofcode.com/2022/day/1/input")
 
-current_sum = 0
-
 top_3_sums = [0, 0, 0]
 
 for calory in calories:
