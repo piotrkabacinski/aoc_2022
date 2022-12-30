@@ -15,9 +15,11 @@ def parse_stack(lines):
     for index in range(0, len(lines) - 1):
         characters = [*lines[index]]
 
+        step = 4
+
         for id in range(0, stacks_amount):
-            start = id * 4
-            offset = start + 4
+            start = id * step
+            offset = start + step
 
             crate = characters[start:offset][1]
 
@@ -42,6 +44,16 @@ for index, line in enumerate(input):
             if command == "":
                 break
 
-            print(command)
+            tokens = command.split(" ")
+
+            amount = int(tokens[1])
+            source_index = int(tokens[3]) - 1
+            target_index = int(tokens[5]) - 1
+
+            parsed_stack[target_index] =  parsed_stack[source_index][0:amount] + parsed_stack[target_index]
+
+            del parsed_stack[source_index][0:amount]
 
         break
+
+print("".join(list(map(lambda a: a[0], parsed_stack))))
