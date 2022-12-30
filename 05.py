@@ -50,10 +50,13 @@ for index, line in enumerate(input):
             source_index = int(tokens[3]) - 1
             target_index = int(tokens[5]) - 1
 
-            parsed_stack[target_index] =  parsed_stack[source_index][0:amount] + parsed_stack[target_index]
+            crates = parsed_stack[source_index][0:amount]
+            crates.reverse()
+
+            parsed_stack[target_index] = crates + parsed_stack[target_index]
 
             del parsed_stack[source_index][0:amount]
 
         break
 
-print("".join(list(map(lambda a: a[0], parsed_stack))))
+print("".join(list(map(lambda a: a[0], parsed_stack)))) # TLFGBZHCN
